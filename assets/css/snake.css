@@ -3,7 +3,7 @@ html{
 }
 
 body.game {
-  background: #000000;
+  background: #fff;
 }
 
 
@@ -42,73 +42,16 @@ body.game {
   left: -60px;
 }
 
-.snake-controls *{
-  color: #ffffff;
-}
-
-.snake-container{
-  width: 100%;
-  position: absolute;
-  color: #ffffff;
-}
-
-.game-over {
-  text-align: center;
-}
-.snake-container h1{
-  width: 100%;
-}
-.snake{
+.spaceship {
+  background-color: #eee;
   position: relative;
-  z-index: 999;
+  width: 300px;
+  height: 300px;
 }
-.snake-container .block{
-  display: block;
+
+.spaceship .character {
   position: absolute;
-  z-index: 1;
-
-}
-.snake-container .score{
-  color: #ffffff;
-  font-weight: bold;
-  position: absolute;
-  left: 2px;
-  top: -0.1em;
-  z-index: 3;
-}
-
-.snake-container .block.cherry{
-  z-index: 2;
-  background: red;
-}
-.snake-container .block.tail{
-  z-index: 2;
-  background: yellow;
-}
-.snake-container .block.wall{
-  background: blue;
-}
-.snake-container .block.empty{
-  background: #000000;
-}
-
-.snake-top{
-  background-color:yellow;
-  border-radius:0 100px 0 0;
-  animation: snake-spin1 0.5s infinite linear;
-}
-
-.snake-middle{
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: yellow;
-  border-radius:0 100px 100px 0;
-}
-.snake-bottom{
-  background-color:yellow;
-  border-radius:0 0 100px 0;
-  animation: snake-spin2 0.5s infinite linear;
+  transition: 0.1s all ease-out;
 }
 
 /* Animation*/

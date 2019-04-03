@@ -4,10 +4,12 @@ defmodule Demo.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec
+
     children = [
-      Demo.Repo,
       DemoWeb.Endpoint,
-      DemoWeb.Presence
+      DemoWeb.Presence,
+      supervisor(Demo.StoreSupervisor, [])
     ]
 
     opts = [strategy: :one_for_one, name: Demo.Supervisor]

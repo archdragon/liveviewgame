@@ -22,6 +22,7 @@ defmodule DemoWeb.Router do
 
     live "/thermostat", ThermostatLive
     get "/snake", PageController, :snake
+    post "/game", PageController, :game
     live "/search", SearchLive
     live "/clock", ClockLive
     live "/image", ImageLive

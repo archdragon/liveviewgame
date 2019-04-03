@@ -6,18 +6,30 @@
 <section class="row">
   <article class="column">
     <h4>LiveView Examples</h4>
-    <ul>
-      <li><%= link "Thermostat", to: Routes.live_path(@conn, DemoWeb.ThermostatLive) %></li>
-      <li><%= link "Snake", to: Routes.page_path(@conn, :snake) %></li>
-      <li><%= link "Search with Autocomplete", to: Routes.live_path(@conn, DemoWeb.SearchLive) %></li>
-      <li><%= link "Image Editor", to: Routes.live_path(@conn, DemoWeb.ImageLive) %></li>
-      <li><%= link "Clock", to: Routes.live_path(@conn, DemoWeb.ClockLive) %></li>
-      <li><%= link "Pacman", to: Routes.live_path(@conn, DemoWeb.PacmanLive) %></li>
-      <li><%= link "Rainbow", to: Routes.live_path(@conn, DemoWeb.RainbowLive) %></li>
-      <li><%= link "Counter", to: Routes.live_path(@conn, DemoWeb.CounterLive) %></li>
-      <li><%= link "Top", to: Routes.live_path(@conn, DemoWeb.TopLive) %></li>
-      <li><%= link "CRUD Users", to: Routes.live_path(@conn, DemoWeb.UserLive.Index) %></li>
-      <li><%= link "Presence Example", to: Routes.live_path(@conn, DemoWeb.UserLive.PresenceIndex, "user#{System.unique_integer([:positive])}") %></li>
-    </ul>
+    <div class="character-form">
+      <div class="arrow eyes-left">l</div>
+      <div class="arrow eyes-right">r</div>
+      <div class="arrow body-left">l</div>
+      <div class="arrow body-right">r</div>
+      <%= form_for @conn, Routes.page_path(@conn, :game) do %>
+        <div class="character">
+          <div class="eyes"></div>
+          <div class="body"></div>
+        </div>
+        <table>
+          <tr>
+            <td>
+              <input type="number" name="eyes" value="0">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="number" name="body" value="0">
+            </td>
+          </tr>
+        </table>
+        <center><button>Start!</button></center>
+      <% end %>
+    </div>
   </article>
 </section>

@@ -70,3 +70,76 @@ pre{
   background: #3875d7;
   color: white;
 }
+
+.character-form {
+  background-color: #eee;
+  height: 300px;
+  width: 300px;
+  position: relative;
+
+}
+
+.character {
+  position: relative;
+  height: 120px;
+  width: 120px;
+}
+
+.character.small {
+  height: 40px;
+  width: 40px;
+}
+
+.character .body, .character .eyes {
+  background-size: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
+.character.small .body, .character.small .eyes {
+  height: 40px;
+  width: 40px;
+}
+
+.character .eyes {
+  z-index: 2;
+}
+
+.character-form .arrow {
+  background-color: red;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  z-index: 3;
+}
+
+.character-form .character {
+  position: absolute;
+  z-index: 0;
+  left: 100px;
+  top: 50px;
+}
+
+.character-form .eyes-left {
+  left: -10px;
+  top: 20px
+}
+
+.character-form .eyes-right {
+  right: -10px;
+  top: 20px
+}
+
+.character-form .body-left {
+  left: -10px;
+  top: 90px
+}
+
+.character-form .body-right {
+  right: -10px;
+  top: 90px
+}
