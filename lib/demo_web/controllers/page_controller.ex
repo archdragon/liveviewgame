@@ -17,4 +17,11 @@ defmodule DemoWeb.PageController do
     |> put_layout(:game)
     |> LiveView.Controller.live_render(DemoWeb.GameLive, session: %{character: %{eyes: eyes, body: body}, user_id: uuid})
   end
+
+  def robot(conn, _params) do
+
+    conn
+    |> put_layout(:game)
+    |> LiveView.Controller.live_render(DemoWeb.RobotLive, session: %{})
+  end
 end

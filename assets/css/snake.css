@@ -54,6 +54,23 @@ body.game {
   transition: 0.1s all ease-out;
 }
 
+.spaceship #robot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 25px;
+  line-height: 25px;
+  height: 25px;
+  width: 25px;
+}
+
+.spaceship .obstacle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: red;
+}
+
 /* Animation*/
 
 @keyframes snake-spin1 {

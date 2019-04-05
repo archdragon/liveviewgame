@@ -1,16 +1,11 @@
-<section class="phx-hero">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix LiveView" %></h2>
-  <%= live_render(@conn, DemoWeb.WeatherLive) %>
-</section>
-
 <section class="row">
   <article class="column">
-    <h4>LiveView Examples</h4>
+    <h4>Create your character</h4>
     <div class="character-form">
-      <div class="arrow eyes-left">l</div>
-      <div class="arrow eyes-right">r</div>
-      <div class="arrow body-left">l</div>
-      <div class="arrow body-right">r</div>
+      <div class="arrow eyes-left">◄</div>
+      <div class="arrow eyes-right">►</div>
+      <div class="arrow body-left">◄</div>
+      <div class="arrow body-right">►</div>
       <%= form_for @conn, Routes.page_path(@conn, :game) do %>
         <div class="character">
           <div class="eyes"></div>
