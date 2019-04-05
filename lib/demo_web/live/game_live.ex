@@ -8,38 +8,37 @@ defmodule DemoWeb.GameLive do
     ~L"""
     <div class="container">
       <div class="row">
-        <div class="col-sm-6">
-          <div class="spaceship">
-            <div class="robot-control north">
-              <span class="emojis">🤖⬆️</span>
-            </div>
-            <div class="robot-control south">
-              <span class="emojis">🤖⬇️</span>
-            </div>
-            <div class="robot-control east">
-              <span class="emojis">🤖⬅️</span>
-            </div>
-            <div class="robot-control west">
-              <span class="emojis">🤖</span>
-            </div>
-            <%= for player <- @state.players do %>
-              <div id="<%=player.user_id %>" class="player character small" style="transform: translate(<%=player.position_x %>px, <%=player.position_y %>px)">
-                <div class="eyes" style="background-image: url('/images/eyes_<%=player.character.eyes %>.png')"></div>
-                <div class="body" style="background-image: url('/images/body_<%=player.character.body %>.png')"></div>
+        <div class="column">
+          <div class="game-area-wrapper">
+            <div class="spaceship" style="transform: <%=get_area_rotation(@state) %>">
+              <div class="robot-control north">
+                <span class="emojis">🤖⬆️</span>
               </div>
-            <% end %>
+              <div class="robot-control south">
+                <span class="emojis">🤖⬇️</span>
+              </div>
+              <div class="robot-control east">
+                <span class="emojis">🤖⬅️</span>
+              </div>
+              <div class="robot-control west">
+                <span class="emojis">🤖</span>
+              </div>
+              <%= for player <- @state.players do %>
+                <div id="<%=player.user_id %>" class="player character small <%=player_class(player, @current_player.user_id) %>" style="transform: translate(<%=player.position_x %>px, <%=player.position_y %>px)">
+                  <div class="eyes" style="background-image: url('/images/eyes_<%=player.character.eyes %>.png')"></div>
+                  <div class="body" style="background-image: url('/images/body_<%=player.character.body %>.png')"></div>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div>
-            <button phx-click="move_up">UP</button>
-            <button phx-click="move_down">DOWN</button>
-            <button phx-click="move_left">-</button>
-            <button phx-click="move_right">+</button>
-          </div>
-          <%= @current_player.user_id %>
         </div>
       </div>
+    </div>
+    <div class="controls">
+      <button class="button-up" phx-click="move_up">UP</button>
+      <button class="button-down" phx-click="move_down">DOWN</button>
+      <button class="button-left" phx-click="move_left">-</button>
+      <button class="button-right" phx-click="move_right">+</button>
     </div>
     """
   end
@@ -112,5 +111,20 @@ defmodule DemoWeb.GameLive do
     socket
     |> user_id()
     |> Demo.Store.move(x, y)
+  end
+
+  defp player_class(player, current_player_user_id) do
+    case player.user_id == current_player_user_id do
+      true -> "player-current"
+      _ -> ""
+    end
+  end
+
+  defp get_area_rotation(state) do
+    multiplier = 20
+    speed = state.robot.speed
+    x = speed.x * multiplier
+    y = speed.y * multiplier * -1
+    "rotateX(#{y}deg) rotateY(#{x}deg)"
   end
 end

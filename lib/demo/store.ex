@@ -8,7 +8,8 @@ defmodule Demo.Store do
   @robot_init %{
     position_x: 0, # from 0 to 300
     position_y: 0, # from 0 to 300
-    state: :neutral
+    state: :neutral,
+    speed: %{x: 0, y: 0}
   }
   @init_state %{
     players: [],
@@ -124,6 +125,7 @@ defmodule Demo.Store do
 
     updated_robot =
       robot
+      |> Map.put(:speed, speed)
       |> Map.put(:position_x, clamp_position(robot.position_x + speed.x))
       |> Map.put(:position_y, clamp_position(robot.position_y + speed.y))
 
@@ -182,13 +184,37 @@ defmodule Demo.Store do
 
   def robot_restart_if_needed(state = %{robot: robot}) do
     case robot.state do
-      :lost -> robot_restart(state)
-      :won -> robot_restart(state)
-        _ -> state
+      :lost ->
+        state
+        |> save_loss_info()
+        |> robot_restart()
+      :won ->
+        state
+        |> save_win_info()
+        |> robot_restart()
+      _ -> state
     end
   end
 
   def robot_restart(state) do
     %{state | robot: @robot_init}
+  end
+
+  def save_win_info(state) do
+    game = state.game
+    new_game = %{game | last_win: timestamp()}
+
+    %{state | game: new_game}
+  end
+
+  def save_loss_info(state) do
+    game = state.game
+    new_game = %{game | last_loss: timestamp()}
+
+    %{state | game: new_game}
+  end
+
+  defp timestamp() do
+    Demo.Time.timestamp()
   end
 end

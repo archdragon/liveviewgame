@@ -10,7 +10,7 @@ defmodule DemoWeb.RobotLive do
     ~L"""
     <div class="container">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="column">
           <div class="spaceship">
             <div id="robot" style="transform: translate(<%=@state.robot.position_x %>px, <%=@state.robot.position_y %>px)">
               🤖
@@ -26,7 +26,20 @@ defmodule DemoWeb.RobotLive do
       </div>
 
       <div class="row">
-        <%=@state.robot.state %>
+        <div class="column">
+
+          <div class="game-stats">
+            <div>
+              <strong>Last loss:</strong>
+              <%=format_relative_time(@state.game.last_loss) %>
+            </div>
+            <div>
+              <strong>Last win:</strong>
+              <%=format_relative_time(@state.game.last_win) %>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
     """
@@ -53,5 +66,19 @@ defmodule DemoWeb.RobotLive do
   defp load_data(socket) do
     socket
     |> assign(%{state: Demo.Store.get_all()})
+  end
+
+  defp format_relative_time(0) do
+    "--"
+  end
+
+  defp format_relative_time(timestamp) do
+    timestamp
+    |> Timex.from_unix()
+    |> Timex.format("{relative}", :relative)
+    |> case do
+      {:ok, relative_string} -> relative_string
+      _ -> "?"
+    end
   end
 end

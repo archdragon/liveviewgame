@@ -99,3 +99,73 @@
   right: -15px;
   top: 100px
 }
+
+.controls {
+  background-color: #ccc;
+  position: absolute;
+  left: 25px;
+  bottom: 25px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.controls button {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+.controls button.button-up {
+  top: -10px;
+  position: absolute;
+  left: 30px;
+}
+
+.controls button.button-down {
+  bottom: -10px;
+  position: absolute;
+  left: 30px;
+}
+
+.controls button.button-left {
+  top: 30px;
+  position: absolute;
+  left: -10px;
+}
+
+.controls button.button-right {
+  top: 30px;
+  position: absolute;
+  right: -10px;
+}
+
+.game-area-wrapper {
+  perspective: 800px;
+}
+
+.player-current {
+  z-index: 10;
+}
+
+.player-current::after {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  color: #333;
+  border-radius: 4px;
+  position: absolute;
+  left: 8px;
+  top: -15px;
+  font-weight: bold;
+  content: 'you';
+  font-size: 11px;
+  padding: 1px 2px;
+  z-index: 11;
+}
+
+.game-stats {
+  width: 300px;
+  margin: 20px auto;
+}

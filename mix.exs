@@ -20,7 +20,7 @@ defmodule Demo.Mixfile do
   def application do
     [
       mod: {Demo.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :timex]
     ]
   end
 
@@ -46,7 +46,8 @@ defmodule Demo.Mixfile do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:cowboy, "~> 2.0"},
-      {:calendar, "~> 0.17.5"}
+      {:calendar, "~> 0.17.5"},
+      {:timex, "~> 3.1"}
     ]
   end
 

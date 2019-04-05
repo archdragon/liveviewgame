@@ -51,6 +51,7 @@ body.game {
   width: 300px;
   height: 300px;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .spaceship .character {
