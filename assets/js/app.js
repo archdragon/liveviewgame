@@ -23,11 +23,21 @@ document.addEventListener('DOMContentLoaded', function() {
     eyesDisplay.style.backgroundImage = `url('/images/eyes_${eyesValue}.png')`
   }
 
+  function clampPartValue(value) {
+    if(value > 10) {
+      return 0;
+    } else if(value < 0) {
+      return 10;
+    }
+
+    return value;
+  }
+
   function updatePart(name, direction) {
     let input = characterForm.querySelector(`input[name='${name}']`)
     let value = input.getAttribute("value")
     value = parseInt(value)
-    const newValue = value + direction
+    const newValue = clampPartValue(value + direction)
     input.setAttribute("value", newValue)
 
     updateCharacterDisplay()

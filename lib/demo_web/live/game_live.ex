@@ -10,6 +10,18 @@ defmodule DemoWeb.GameLive do
       <div class="row">
         <div class="col-sm-6">
           <div class="spaceship">
+            <div class="robot-control north">
+              <span class="emojis">🤖⬆️</span>
+            </div>
+            <div class="robot-control south">
+              <span class="emojis">🤖⬇️</span>
+            </div>
+            <div class="robot-control east">
+              <span class="emojis">🤖⬅️</span>
+            </div>
+            <div class="robot-control west">
+              <span class="emojis">🤖</span>
+            </div>
             <%= for player <- @state.players do %>
               <div id="<%=player.user_id %>" class="player character small" style="transform: translate(<%=player.position_x %>px, <%=player.position_y %>px)">
                 <div class="eyes" style="background-image: url('/images/eyes_<%=player.character.eyes %>.png')"></div>

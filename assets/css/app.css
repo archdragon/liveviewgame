@@ -7,12 +7,16 @@
 
 .character-form {
   background-color: #eee;
-  border: 2px solid #ddd;
+  border: 3px solid #ddd;
   border-radius: 8px;
-  height: 300px;
+  height: 275px;
   width: 300px;
   position: relative;
+}
 
+.character-form button {
+  top: 200px;
+  position: relative;
 }
 
 .character {
@@ -73,25 +77,25 @@
   position: absolute;
   z-index: 0;
   left: 100px;
-  top: 50px;
+  top: 40px;
 }
 
 .character-form .eyes-left {
-  left: -10px;
+  left: -15px;
   top: 20px
 }
 
 .character-form .eyes-right {
-  right: -10px;
+  right: -15px;
   top: 20px
 }
 
 .character-form .body-left {
-  left: -10px;
-  top: 90px
+  left: -15px;
+  top: 100px
 }
 
 .character-form .body-right {
-  right: -10px;
-  top: 90px
+  right: -15px;
+  top: 100px
 }

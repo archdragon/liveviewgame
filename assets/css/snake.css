@@ -43,10 +43,14 @@ body.game {
 }
 
 .spaceship {
-  background-color: #eee;
+  background-color: rgb(248, 247, 242);
+  border: 3px solid #ddd;
+  border-color: rgb(227, 226, 221);
+  border-radius: 8px;
   position: relative;
   width: 300px;
   height: 300px;
+  overflow: hidden;
 }
 
 .spaceship .character {
@@ -65,103 +69,90 @@ body.game {
 }
 
 .spaceship .obstacle {
+  background-clip: padding-box;
+  border: 6px solid rgba(116, 170, 231, 0.562);
+  border-radius: 10px;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: red;
+  background-color: rgb(116, 170, 231);
 }
 
-/* Animation*/
-
-@keyframes snake-spin1 {
-  0%  {transform: rotate(0deg);}
-  50%{transform: rotate(-35deg);}
-
-}
-@keyframes snake-spin2 {
-  0%  {transform: rotate(0deg);}
-  50%{transform: rotate(35deg);}
+.spaceship .obstacle.obstacle-win {
+  border: 6px solid rgb(250, 228, 157);
+  background-color: rgb(248, 222, 107);
 }
 
-@-moz-keyframes snake-spin1 {
-  0%  {transform: rotate(0deg);}
-  50%{transform: rotate(-35deg);}
-
-}
-@-moz-keyframes snake-spin2 {
-  0%  {transform: rotate(0deg);}
-  50%{transform: rotate(35deg);}
+.spaceship .obstacle.obstacle-win::after {
+  position: absolute;
+  content: '🏆';
+  font-size: 20px;
+  left: 8px;
+  top: 8px;
 }
 
-@-webkit-keyframes snake-spin1 {
-  0%  {transform: rotate(0deg);}
-  50%{transform: rotate(-35deg);}
-
-}
-@-webkit-keyframes snake-spin2 {
-  0%  {transform: rotate(0deg);}
-  50%{transform: rotate(35deg);}
+.spaceship .robot-control {
+  background-color: rgb(222, 222, 207);
+  /* border: 6px solid rgba(116, 170, 231, 0.562); */
+  border-radius: 10px;
+  position: absolute;
 }
 
-@keyframes eat {
-  0% { box-shadow:
-       100px 65px 0 0 white,
-       300px 65px 0 0 white,
-       500px 65px 0 0 white,
-       700px 65px 0 0 white,
-       900px 65px 0 0 white,
-       1100px 65px 0 0 white,
-       1300px 65px 0 0 white;}
-
-  100% { box-shadow:
-         0px 65px 0 0 white,
-         100px 65px 0 0 white,
-         300px 65px 0 0 white,
-         500px 65px 0 0 white,
-         700px 65px 0 0 white,
-         900px 65px 0 0 white,
-         1100px 65px 0 0 white;}
+.spaceship .robot-control .emojis {
+  opacity: 0.8;
+  display: inline-block;
+  font-size: 22px;
+  line-height: 22px;
+  text-align: center;
+  width: 100%;
+  filter: grayscale(60%) brightness(120%) contrast(80%);
 }
 
+.spaceship .robot-control.north {
+  height: 60px;
+  width: 120px;
+  top: -10px;
+  left: 90px;
+}
 
- @-moz-keyframes eat {
-   0% { box-shadow:
-        100px 65px 0 0 white,
-        300px 65px 0 0 white,
-        500px 65px 0 0 white,
-        700px 65px 0 0 white,
-        900px 65px 0 0 white,
-        1100px 65px 0 0 white,
-        1300px 65px 0 0 white;}
+.spaceship .robot-control.north .emojis {
+  padding-top: 20px;
+}
 
-   100% { box-shadow:
-          0px 65px 0 0 white,
-          100px 65px 0 0 white,
-          300px 65px 0 0 white,
-          500px 65px 0 0 white,
-          700px 65px 0 0 white,
-          900px 65px 0 0 white,
-          1100px 65px 0 0 white;}
- }
+.spaceship .robot-control.south .emojis {
+  padding-top: 16px;
+}
 
+.spaceship .robot-control.east .emojis {
+  padding-left: 20px;
+  padding-top: 40px;
+  text-align: left;
+}
 
+.spaceship .robot-control.west .emojis {
+  text-align: left;
+  padding-left: 15px;
+  padding-top: 40px;
+}
 
- @-webkit-keyframes eat {
-   0% { box-shadow:
-        100px 65px 0 0 white,
-        300px 65px 0 0 white,
-        500px 65px 0 0 white,
-        700px 65px 0 0 white,
-        900px 65px 0 0 white,
-        1100px 65px 0 0 white,
-        1300px 65px 0 0 white;}
+.spaceship .robot-control.south {
+  height: 60px;
+  width: 120px;
+  bottom: -10px;
+  left: 90px;
+}
 
-   100% { box-shadow:
-          0px 65px 0 0 white,
-          100px 65px 0 0 white,
-          300px 65px 0 0 white,
-          500px 65px 0 0 white,
-          700px 65px 0 0 white,
-          900px 65px 0 0 white,
-          1100px 65px 0 0 white;}
- }
+.spaceship .robot-control.east {
+  height: 120px;
+  width: 60px;
+  top: 90px;
+  left: -10px;
+}
+
+.spaceship .robot-control.west {
+  height: 120px;
+  width: 60px;
+  top: 90px;
+  right: -10px;
+}
+

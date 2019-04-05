@@ -6,24 +6,18 @@
       <div class="arrow eyes-right">►</div>
       <div class="arrow body-left">◄</div>
       <div class="arrow body-right">►</div>
+
       <%= form_for @conn, Routes.page_path(@conn, :game) do %>
         <div class="character">
           <div class="eyes"></div>
           <div class="body"></div>
         </div>
-        <table>
-          <tr>
-            <td>
-              <input type="number" name="eyes" value="0">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input type="number" name="body" value="0">
-            </td>
-          </tr>
-        </table>
-        <center><button>Start!</button></center>
+        <input type="hidden" name="eyes" value="0">
+        <input type="hidden" name="body" value="0">
+
+        <center>
+          <button>Enter the robot!</button>
+        </center>
       <% end %>
     </div>
   </article>

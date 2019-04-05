@@ -17,7 +17,8 @@ defmodule DemoWeb.RobotLive do
             </div>
 
             <%= for obstacle <- obstacles do %>
-              <div class="obstacle" style="width: <%=obstacle.size_x %>px; height: <%=obstacle.size_y %>px; transform: translate(<%=obstacle.x %>px, <%=obstacle.y %>px)">🔥</div>
+              <div class="obstacle obstacle-<%=obstacle.kind %>" style="width: <%=obstacle.size_x %>px; height: <%=obstacle.size_y %>px; transform: translate(<%=obstacle.x %>px, <%=obstacle.y %>px)">
+              </div>
 
             <% end %>
           </div>

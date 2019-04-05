@@ -10,6 +10,14 @@ defmodule Demo.Store do
     position_y: 0, # from 0 to 300
     state: :neutral
   }
+  @init_state %{
+    players: [],
+    robot: @robot_init,
+    game: %{
+      last_win: 0,
+      last_loss: 0
+    }
+  }
 
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, [], opts)
@@ -82,11 +90,7 @@ defmodule Demo.Store do
   def init(_args) do
     tick()
 
-    {:ok, %{
-      players: [],
-      robot: @robot_init,
-      last_win: 0
-    }}
+    {:ok, @init_state}
   end
 
   def handle_info(:tick, state) do
@@ -160,8 +164,10 @@ defmodule Demo.Store do
     end)
     |> case do
       :none -> state
+      :win ->
+        robot_update_state(state, :won)
       _ ->
-        # TODO
+        # :death and others
         robot_update_state(state, :lost)
     end
   end
