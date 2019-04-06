@@ -21,7 +21,7 @@ defmodule DemoWeb.GameLive do
                 <span class="emojis">🤖⬅️</span>
               </div>
               <div class="robot-control west">
-                <span class="emojis">🤖</span>
+                <span class="emojis">🤖➡️</span>
               </div>
               <%= for player <- @state.players do %>
                 <div id="<%=player.user_id %>" class="player character small <%=player_class(player, @current_player.user_id) %>" style="transform: translate(<%=player.position_x %>px, <%=player.position_y %>px)">
@@ -35,10 +35,10 @@ defmodule DemoWeb.GameLive do
       </div>
     </div>
     <div class="controls">
-      <button class="button-up" phx-click="move_up">UP</button>
-      <button class="button-down" phx-click="move_down">DOWN</button>
-      <button class="button-left" phx-click="move_left">-</button>
-      <button class="button-right" phx-click="move_right">+</button>
+      <button class="button-up" phx-click="move_up">▲</button>
+      <button class="button-down" phx-click="move_down">▼</button>
+      <button class="button-left" phx-click="move_left">◄</button>
+      <button class="button-right" phx-click="move_right">►</button>
     </div>
     """
   end

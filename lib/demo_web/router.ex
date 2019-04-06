@@ -11,6 +11,10 @@ defmodule DemoWeb.Router do
     plug :put_layout, {DemoWeb.LayoutView, :app}
   end
 
+  pipeline :private do
+    plug DemoWeb.Plugs.BasicAuth, username: "admin", password: "secret"
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -22,22 +26,13 @@ defmodule DemoWeb.Router do
 
     post "/game", PageController, :game
     get "/robot", PageController, :robot
-
-    live "/thermostat", ThermostatLive
-    get "/snake", PageController, :snake
-    live "/search", SearchLive
-    live "/clock", ClockLive
-    live "/image", ImageLive
-    live "/pacman", PacmanLive
-    live "/rainbow", RainbowLive
-    live "/counter", CounterLive
-    live "/top", TopLive
-    live "/presence_users/:name", UserLive.PresenceIndex
-    live "/users", UserLive.Index
-    live "/users/new", UserLive.New
-    live "/users/:id", UserLive.Show
-    live "/users/:id/edit", UserLive.Edit
-
-    resources "/plain/users", UserController
   end
+
+  scope "/", DemoWeb do
+    pipe_through [:browser, :private]
+
+    get "/secret_admin", SecretAdminController, :index
+    post "/admin/remove_inactive", SecretAdminController, :remove_inactive
+  end
+
 end

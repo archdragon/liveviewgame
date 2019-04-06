@@ -1,0 +1,8 @@
+<h3>Secret Admin</h3>
+<%= form_for @conn, "/admin/remove_inactive" do %>
+  <button>Remove inactive players</button>
+<% end %>
+
+<%= form_for @conn, Routes.page_path(@conn, :game) do %>
+  <button>Restart robot</button>
+<% end %>

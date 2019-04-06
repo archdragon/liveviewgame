@@ -1,6 +1,6 @@
 
 defmodule Demo.Time do
   def timestamp() do
-    System.system_time(:second)
+    :os.system_time(:seconds)
   end
 end

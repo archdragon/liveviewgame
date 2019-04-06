@@ -36,13 +36,24 @@ defmodule Demo.Store do
     GenServer.cast(__MODULE__, {:move, user_id, x, y})
   end
 
+  def remove_inactive() do
+    GenServer.cast(__MODULE__, {:remove_inactive})
+  end
+
+  def force_restart() do
+    GenServer.cast(__MODULE__, {:force_restart})
+
+    #{:stop, :normal, state}
+  end
+
   def handle_call({:get_all}, _from, state) do
     {:reply, state, state}
   end
 
   def handle_call({:register_player, player_data}, _from, state) do
-    IO.puts("Registering player")
-    IO.inspect(player_data)
+    player_data =
+      player_data
+      |> Map.put(:last_move_timestamp, timestamp())
 
     new_players = [player_data | state.players]
 
@@ -52,8 +63,8 @@ defmodule Demo.Store do
   end
 
   def handle_cast({:move, user_id, x, y}, state) do
-    x = x * 30
-    y = y * 30
+    x = x * (25 + :rand.uniform(5))
+    y = y * (25 + :rand.uniform(5))
 
     new_players =
       state.players
@@ -63,7 +74,7 @@ defmodule Demo.Store do
             new_x = clamp_position(player.position_x + x)
             new_y = clamp_position(player.position_y + y)
 
-            %{player | position_x: new_x, position_y: new_y}
+            %{player | position_x: new_x, position_y: new_y, last_move_timestamp: timestamp()}
           false ->
             player
         end
@@ -76,8 +87,7 @@ defmodule Demo.Store do
 
   # TODO: Cast will be enough
   def handle_call({:replace_last, search_term}, _from, state) do
-    timestamp = System.system_time(:second)
-    new_item = %{text: search_term, timestamp: timestamp}
+    new_item = %{text: search_term, timestamp: timestamp()}
 
     new_state =
       case state do
@@ -86,6 +96,18 @@ defmodule Demo.Store do
       end
 
     {:reply, :ok, new_state}
+  end
+
+  def handle_cast({:remove_inactive}, state) do
+    new_players =
+      state.players
+      |> Enum.reject(fn player ->
+        player.last_move_timestamp + 60 < timestamp()
+      end)
+
+    new_state = %{state | players: new_players}
+
+    {:noreply, new_state}
   end
 
   def init(_args) do
@@ -137,13 +159,13 @@ defmodule Demo.Store do
       state.players
       |> Enum.reduce(%{x: 0, y: 0, total: 0}, fn player, acc ->
         case {player.position_x, player.position_y} do
-          {x, y} when x > 250 and y < 210 and y > 90 ->
+          {x, y} when x > 230 and y < 210 and y > 80 ->
             %{x: acc.x + 1, y: acc.y, total: acc.total + 1}
-          {x, y} when x < 50 and y < 210 and y > 90 ->
+          {x, y} when x < 50 and y < 210 and y > 80 ->
             %{x: acc.x - 1, y: acc.y, total: acc.total + 1}
           {x, y} when y < 50 and x < 210 and x > 90 ->
             %{x: acc.x, y: acc.y - 1, total: acc.total + 1}
-          {x, y} when y > 250 and x < 210 and x > 90 ->
+          {x, y} when y > 230 and x < 210 and x > 90 ->
             %{x: acc.x, y: acc.y + 1, total: acc.total + 1}
           _ -> acc
         end

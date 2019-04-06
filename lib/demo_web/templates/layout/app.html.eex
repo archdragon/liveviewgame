@@ -4,15 +4,27 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no"/>
-    <title>Demo · Phoenix Framework</title>
+    <title>LiveView Robot Game 🤖</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
   </head>
   <body>
-    <header>
+    <header class="main-page-header">
       <section class="container">
-        <h1>Page name goes here</h1>
-      </div>
+        <section class="row">
+          <div class="column">
+            <h1> 🤖 LiveView Robot Game</h1>
+          </div>
+          <div class="column">
+            <p>
+              <a href="/">
+                <span class="subtitle-part0">http://</span><span class="subtitle-part1">live</span><span class="subtitle-part2">view</span><span class="subtitle-part3">game</span><span class="subtitle-part4">.herokuapp.com</span>
+              </a>
+            </p>
+          </div>
+        </section>
+      </section>
     </header>
 
     <main role="main" class="container <%= Enum.at(@conn.path_info, 0) %>">

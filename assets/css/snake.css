@@ -2,10 +2,18 @@ html{
   overflow-x:hidden;
 }
 
-body.game {
+body {
   background: #fff;
+  margin: 0;
+  padding: 0;
 }
 
+body.game header {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-width: 0;
+}
 
 .dpad{
   opacity: 0.5;
@@ -52,6 +60,7 @@ body.game {
   height: 300px;
   overflow: hidden;
   margin: 0 auto;
+  transition: 0.3s transform ease-out;
 }
 
 .spaceship .character {
@@ -106,7 +115,7 @@ body.game {
   line-height: 22px;
   text-align: center;
   width: 100%;
-  filter: grayscale(60%) brightness(120%) contrast(80%);
+  filter: grayscale(65%) brightness(120%) contrast(80%) sepia(50%);
 }
 
 .spaceship .robot-control.north {

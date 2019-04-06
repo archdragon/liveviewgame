@@ -1,6 +1,6 @@
 <section class="row">
   <article class="column">
-    <h4>Create your character</h4>
+    <h4>Control the robot</h4>
     <div class="character-form">
       <div class="arrow eyes-left">◄</div>
       <div class="arrow eyes-right">►</div>
@@ -20,5 +20,13 @@
         </center>
       <% end %>
     </div>
+  </article>
+
+  <article class="column">
+    <h4>See robot's progress</h4>
+
+    <form action="/robot">
+      <button>Show obstacle course</button>
+    </form>
   </article>
 </section>
