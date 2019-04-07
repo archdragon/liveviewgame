@@ -3,6 +3,6 @@
   <button>Remove inactive players</button>
 <% end %>
 
-<%= form_for @conn, Routes.page_path(@conn, :game) do %>
-  <button>Restart robot</button>
+<%= form_for @conn, "/admin/force_restart" do %>
+  <button>Force restart</button>
 <% end %>

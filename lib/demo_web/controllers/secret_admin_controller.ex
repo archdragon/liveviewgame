@@ -13,4 +13,13 @@ defmodule DemoWeb.SecretAdminController do
     |> redirect(to: "/secret_admin")
     |> halt()
   end
+
+  def force_restart(conn, _params) do
+    Demo.Store.force_restart()
+
+    conn
+    |> put_flash(:info, "Restarting the game server")
+    |> redirect(to: "/secret_admin")
+    |> halt()
+  end
 end

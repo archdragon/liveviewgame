@@ -5,6 +5,7 @@ defmodule Demo.Store do
   @character_size 40
   @limit_y @area_size - @character_size
   @tick_interval 100
+  @tick_cleanup_interval 2000
   @robot_init %{
     position_x: 0, # from 0 to 300
     position_y: 0, # from 0 to 300
@@ -37,13 +38,11 @@ defmodule Demo.Store do
   end
 
   def remove_inactive() do
-    GenServer.cast(__MODULE__, {:remove_inactive})
+    GenServer.cast(__MODULE__, :remove_inactive)
   end
 
   def force_restart() do
-    GenServer.cast(__MODULE__, {:force_restart})
-
-    #{:stop, :normal, state}
+    GenServer.cast(__MODULE__, :force_restart)
   end
 
   def handle_call({:get_all}, _from, state) do
@@ -98,7 +97,7 @@ defmodule Demo.Store do
     {:reply, :ok, new_state}
   end
 
-  def handle_cast({:remove_inactive}, state) do
+  def handle_cast(:remove_inactive, state) do
     new_players =
       state.players
       |> Enum.reject(fn player ->
@@ -110,10 +109,24 @@ defmodule Demo.Store do
     {:noreply, new_state}
   end
 
+  def handle_cast(:force_restart, state) do
+    {:stop, :normal, state}
+  end
+
   def init(_args) do
     tick()
+    tick_cleanup()
 
     {:ok, @init_state}
+  end
+
+  def handle_info(:tick_cleanup, state) do
+    remove_inactive()
+    tick_cleanup()
+
+    IO.puts("tick_cleanup")
+
+    {:noreply, state}
   end
 
   def handle_info(:tick, state) do
@@ -133,6 +146,7 @@ defmodule Demo.Store do
 
   defp tick, do: Process.send_after(self(), :tick, @tick_interval)
 
+  defp tick_cleanup, do: Process.send_after(self(), :tick_cleanup, @tick_cleanup_interval)
 
   defp clamp_position(position) do
     case position do

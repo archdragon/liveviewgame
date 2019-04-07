@@ -10,7 +10,12 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
   </head>
   <body class="game">
-    <header><a class="back-button" href="/">&laquo; Back</a></header>
+    <header>
+      <a class="back-button" href="/">&laquo; Back</a>
+      <div class="pull-right game-url">
+        <span class="part0">LiveViewGame</span><span class="part1">.herokuapp.com</span>
+      </div>
+    </header>
     <main role="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
