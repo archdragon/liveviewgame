@@ -101,7 +101,7 @@ defmodule Demo.Store do
     new_players =
       state.players
       |> Enum.reject(fn player ->
-        player.last_move_timestamp + 60 < timestamp()
+        player.last_move_timestamp + 180 < timestamp()
       end)
 
     new_state = %{state | players: new_players}
@@ -123,8 +123,6 @@ defmodule Demo.Store do
   def handle_info(:tick_cleanup, state) do
     remove_inactive()
     tick_cleanup()
-
-    IO.puts("tick_cleanup")
 
     {:noreply, state}
   end

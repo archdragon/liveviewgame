@@ -12,11 +12,11 @@
   <body>
     <header class="main-page-header">
       <section class="container">
-        <section class="row">
-          <div class="column">
+        <section class="my-row">
+          <div class="my-column">
             <h1> 🤖 LiveView Robot Game</h1>
           </div>
-          <div class="column">
+          <div class="my-column">
             <p>
               <a href="/">
                 <span class="subtitle-part0">http://</span><span class="subtitle-part1">live</span><span class="subtitle-part2">view</span><span class="subtitle-part3">game</span><span class="subtitle-part4">.herokuapp.com</span>

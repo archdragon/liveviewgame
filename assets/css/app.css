@@ -20,6 +20,7 @@ h4 {
   height: 275px;
   width: 300px;
   position: relative;
+  margin-bottom: 40px;
 }
 
 .character-form button {
@@ -69,7 +70,8 @@ h4 {
   font-size: 20px;
   width: 50px;
   position: absolute;
-  transition: 0.1s all ease-out;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   z-index: 3;
 }
 
@@ -193,10 +195,6 @@ h4 {
   padding: 20px 0;
 }
 
-.main-page-header .container {
-  display: flex;
-}
-
 .about, .how-to-play {
   padding-top: 30px;
 }
@@ -204,4 +202,17 @@ h4 {
 .about h4, .how-to-play h4 {
   padding-bottom: 0;
   margin-bottom: 15px;
+}
+
+.my-row {
+  display: flex;
+  margin: 0 -20px;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.my-column {
+  display: inline-block;
+  margin: 0 20px;
+  flex: 1 1 300px;
 }
