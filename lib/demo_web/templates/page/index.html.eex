@@ -30,3 +30,24 @@
     </form>
   </article>
 </section>
+
+<section class="row how-to-play">
+  <article class="column">
+    <h4>How to play</h4>
+    <ul>
+      <li>Guide 🤖  to the 🏆 </li>
+      <li>Control the 🤖  by stepping on the pressure plates</li>
+    </ul>
+  </article>
+</section>
+
+<section class="row about">
+  <article class="column">
+    <h4>About</h4>
+    <ul>
+      <li>Souce code on Github: <a target="_blank" href="https://github.com/archdragon/liveviewgame">archdragon/liveviewgame</a></li>
+      <li>Find me on Twitter: <a target="_bank" href="https://twitter.com/SaneSquid">@SaneSquid</a></li>
+      <li>Based on the <a target="_blank" href="https://github.com/phoenixframework/phoenix_live_view">Phoenix LiveView Demos</a></li>
+    </ul>
+  </article>
+</section>
