@@ -75,10 +75,12 @@ h4 {
 
 .character-form .arrow:hover {
   transform: scale(1.05, 1.05);
+  -webkit-transform: scale(1.05, 1.05);
 }
 
 .character-form .arrow:active {
   transform: scale(0.96, 0.96);
+  -webkit-transform: scale(0.96, 0.96);
 }
 
 .character-form .character {

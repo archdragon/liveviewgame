@@ -73,11 +73,13 @@ body.game header .part1 {
   overflow: hidden;
   margin: 0 auto;
   transition: 0.3s transform ease-out;
+  -webkit-transition: 0.3s transform ease-out;
 }
 
 .spaceship .character {
   position: absolute;
   transition: 0.1s all ease-out;
+  -webkit-transition: 0.1s all ease-out;
 }
 
 .spaceship #robot {
