@@ -216,3 +216,23 @@ h4 {
   margin: 0 20px;
   flex: 1 1 300px;
 }
+
+@media (max-width: 350px) {
+  body, .container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  header .game-url .part1 {
+    display: none;
+  }
+
+  .character-form {
+    margin: 0 auto;
+    width: 280px;
+  }
+}
